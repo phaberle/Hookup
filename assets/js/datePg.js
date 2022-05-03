@@ -4,6 +4,7 @@ const email = document.getElementById('email')
 const gender = document.getElementById('gender')
 const activity = document.getElementById('activity')
 const button = document.getElementById('button1')
+const picEl = document.querySelector("#pic");
 
 /* Parses user sexual preference. Counts how many options are unchecked.
 If the unchecked count == 2 then it posts a window alert for input validation*/
@@ -17,6 +18,7 @@ var M_F_choices = function() {
             choice = choices[i].value;
             url = "https://randomuser.me/api/?gender=" + choice;
             getRandomUserData(url);
+            getRandomActivity();
         } else {
             noCount++;
         }
@@ -75,5 +77,15 @@ var isThisArabic = function(string) {
 
 button.addEventListener("click", function() {
     M_F_choices();
-    getRandomActivity()
 });
+
+//when page loads, check if there is not picture if true - plant the question mark
+window.onload = function() {
+    let picNodesTest = picEl.hasChildNodes();
+    if (!(picNodesTest)) {
+        let pic = document.createElement("img");
+        pic.setAttribute("src", "assets/img/questionMark.png");
+        picEl.appendChild(pic);
+
+    }
+}

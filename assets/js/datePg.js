@@ -260,13 +260,13 @@ backBtn.addEventListener('click', ForwardBackBtnClick);
 forwardBtn.addEventListener('click', ForwardBackBtnClick);
 
 
-// goForItBtn.addEventListener('click', function() {
-
-// });
-
-
+goForItBtn.addEventListener('click', function() {
+    window.alert("Have a wonderful time!!");
+});
 
 
-// emptyLikesBtn.addEventListener('click', function() {
-
-// });
+emptyLikesBtn.addEventListener('click', function() {
+    if (window.confirm("Are you sure you want to ERASE all your likes?")) {
+        localStorage.clear();
+    };
+});

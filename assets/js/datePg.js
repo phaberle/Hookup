@@ -9,14 +9,15 @@ const likeBtn = document.querySelector('#likeBtn')
 //BOTTOM Selectors
 const shopBtn = document.getElementById('shopBtn')
 const likePhoto = document.querySelector(".likeImage");
-const likeImg = document.querySelector(".likeImage");
 const likeName = document.querySelector(".likeName");
 const backBtn = document.querySelector("#backBtn");
+const likeEmail = document.querySelector(".likeEmail");
 const forwardBtn = document.querySelector("#forwardBtn");
 const goForItBtn = document.querySelector("#goForItBtn");
 const emptyLikesBtn = document.querySelector("#likesEmptyBtn")
 
 likeStaging = {};
+
 
 /* Parses user sexual preference (located top half). Counts how many options are unchecked.
 If the unchecked count == 2 then it posts a window alert for input validation*/
@@ -45,7 +46,7 @@ Adjusts the ages to better match the returned pictures and filters out names in 
  Sets DOM elements with concatenated responses. 
 */
 const getRandomUserData = (url) => {
-    console.log(url);
+    // console.log(url);
     if (url !== undefined) {
         fetch(url)
             .then(res => res.json())
@@ -58,8 +59,9 @@ const getRandomUserData = (url) => {
                 if (!(isArabicName)) {
                     name_age.innerHTML = "<strong>" + data.results[0].name.first + " " + data.results[0].name.last + ", " + age + "</strong>";
                     email.innerHTML = data.results[0].email;
-                    likeStaging.seed = data.info.seed;
-                    // console.log(LikeProps.seed);
+                    likeStaging.picture = "<img src = " + imgLnk + " height='256' width='256'>";
+                    likeStaging.name = name_age.textContent;
+                    likeStaging.email = email.textContent;
                 }
             })
     }
@@ -81,7 +83,6 @@ const getRandomActivity = () => {
         .then(res => res.json())
         .then(data => {
             activity.innerHTML = "<strong> On first date: </strong>&nbsp;" + data.activity + ".";
-            likeStaging.randomKey = data.key;
             //console.log(LikeProps.randomKey);
         })
 }
@@ -93,39 +94,7 @@ var isThisArabic = function(string) {
     return evaluate;
 }
 
-//TOP Event Event Listeners
-shopBtn.addEventListener("click", function() {
-    M_F_choices();
-});
 
-likeBtn.addEventListener("click", function() {
-    iLikeThatBtnFunc();
-});
-
-/*===================================================*/
-
-//BOTTOM Event Listeners
-goForItBtn.addEventListener('click', function() {
-
-});
-
-backBtn.addEventListener('click', function() {
-
-});
-
-backBtn.addEventListener('click', function() {
-
-});
-
-forwardBtn.addEventListener('click', function() {
-
-});
-
-emptyLikesBtn.addEventListener('click', function() {
-
-});
-
-/*===================================================*/
 
 //when page loads, and photo DOMS are empty it  plants the question mark
 window.onload = function() {
@@ -143,34 +112,161 @@ window.onload = function() {
     }
 }
 
-//BEGIN LIKE HISTORY
-
-
+//LIKE HISTORY
 likeThatObj = {};
+pkHistory = [];
 
+/*
+Sets pk to 01 if pk is not in localStorage. 
+Adds +1 to existing pk retrieved from localStorage. 
+Finally updates pk local storage counter from either situation
+Sends pk to LocalStorageRecorder
+*/
 var iLikeThatBtnFunc = function() {
     if (localStorage.getItem("pk") == null) {
         let num = 1;
-        let birthPK = parseInt(localStorage.setItem("pk", "1"));
-        createLS(1);
+        let birthPK = parseInt(localStorage.setItem("pk", "01"));
+        LocalStorRecorder(1);
     } else {
         let getPK = localStorage.getItem("pk");
         let currPK = parseInt(getPK);
         currPK++;
-        let getPKv2 = "_" + currPK;
         localStorage.setItem("pk", JSON.stringify(currPK));
-        createLS(currPK);
+        LocalStorRecorder(currPK);
     }
 }
 
-createLS = function(pk) {
-    likeThatObj = { seed: likeStaging.seed, APIKey: likeStaging.randomKey };
-    console.log(likeThatObj);
-    let theName = "_" + pk;
-    localStorage.setItem("\"" + theName + "\"", JSON.stringify(likeThatObj));
-    setCurrPickToLowerHalf(likeThatObj);
+/* Creates object to record likes
+Takes pk (int), runs through ternary --> if < 10 prepend '_0' else prepend  '_'
+*/
+LocalStorRecorder = function(pk) {
+    likeThatObj = { picture: likeStaging.picture, name: likeStaging.name, email: likeStaging.email };
+    let myKey = pk < 10 ? "_0" + pk : "_" + pk;
+    localStorage.setItem(myKey, JSON.stringify(likeThatObj));
+    setCurrLikeToLowerHalf(myKey);
 }
 
-setCurrPickToLowerHalf = function(object) {
-
+/* Random User API does not have a UID. So upon user pressing like button, the data from that API is sent to the lower half.
+Also used to recall data when user interacts with forward and back buttons
+*/
+setCurrLikeToLowerHalf = function(pk) {
+    let objectFromLocalStorage = localStorage.getItem(pk);
+    let myObj = JSON.parse(objectFromLocalStorage);
+    likePhoto.innerHTML = myObj.picture;
+    likeName.innerHTML = "<strong>" + myObj.name + "<\strong>";
+    likeEmail.textContent = myObj.email;
 }
+
+//Returns unique, sorted array of all the pk keys from localStorage objects containing like results.
+pkManagement = function() {
+    let pksNow = Object.keys(localStorage);
+    let temp = "";
+    for (var i = 0; i < pksNow.length; i++) {
+        temp = pksNow[i];
+        if (temp.startsWith("_")) {
+            pkHistory.push(temp);
+        }
+    }
+    return pkHistory.filter(uniqueArrayValues).sort();
+    //return pkHistory;
+}
+
+//src: https://appdividend.com/2022/01/28/how-to-get-distinct-values-from-array-in-javascript/
+const uniqueArrayValues = function(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
+
+
+// var btnPresentPositiontoString = function(pos) {
+//     let string = "_" + pos;
+//     return string;
+// }
+
+
+/* FORWARD, BACKWARD BUTTON FUNCTIONS*/
+
+var ForwardBackBtnClick = function(event) {
+    //debugger;
+    var currPK = localStorage.getItem("pk");
+    let currPKasInt = Math.floor(currPK);
+    var lsStorageNm = "HistBtnPKPosition";
+    var buttonPressed = event.target.getAttribute("id");
+    let btnPresentPosition = localStorage.getItem(lsStorageNm);
+    let fwBtnTest = btnPresentPosition == null || btnPresentPosition == "undefined";
+    let backBtnTest = btnPresentPosition == null || btnPresentPosition == "undefined";
+    let btnNextPosition;
+    if (buttonPressed == "forwardBtn") {
+        if (fwBtnTest) {
+            console.log(btnPresentPosition);
+            var numberOne = "_01"
+            btnPresentPosition = localStorage.setItem(lsStorageNm, numberOne);
+            setCurrLikeToLowerHalf(numberOne);
+        }
+        if (!fwBtnTest) {
+            console.log(btnPresentPosition);
+            let x = btnPresentPositiontoInt();
+            if (x >= 1 && x < currPKasInt) {
+                x++;
+                btnNextPosition = x < 10 ? "_0" + x : "_" + x;
+                btnPresentPosition = localStorage.setItem(lsStorageNm, btnNextPosition);
+                setCurrLikeToLowerHalf(btnNextPosition);
+            } else if (x >= 1 && x >= currPKasInt) {
+                // debugger;
+                localStorage.setItem(lsStorageNm, "_01");
+                setCurrLikeToLowerHalf("_01");
+            }
+        }
+    }
+    if (buttonPressed == "backBtn") {
+        if (!backBtnTest) {
+            let x = currPKasInt;
+            let y = btnPresentPositiontoInt();
+            if (y > 1 && y <= currPKasInt) {
+                y--;
+                btnNextPosition = y < 10 ? "_0" + y : "_" + y;
+                btnPresentPosition = localStorage.setItem(lsStorageNm, btnNextPosition);
+                setCurrLikeToLowerHalf(btnNextPosition);
+            } else if (y <= 1) {
+                let zz = x < 10 ? "_0" + x : "_" + x;
+                btnNextPosition = localStorage.setItem(lsStorageNm, zz);
+                setCurrLikeToLowerHalf(zz);
+            }
+            console.log(btnNextPosition);
+        }
+    }
+}
+
+var btnPresentPositiontoInt = function() {
+    let x = localStorage.getItem("HistBtnPKPosition");
+    x = Math.floor(x.replace('_', ""));
+    return x;
+}
+
+
+
+/*========================================*/
+
+//TOP Event Event Listeners
+shopBtn.addEventListener("click", M_F_choices);
+likeBtn.addEventListener("click", iLikeThatBtnFunc);
+
+/*===================================================*/
+
+/*BOTTOM Half Event Listeners */
+
+
+backBtn.addEventListener('click', ForwardBackBtnClick);
+forwardBtn.addEventListener('click', ForwardBackBtnClick);
+
+
+// goForItBtn.addEventListener('click', function() {
+
+// });
+
+
+
+
+// emptyLikesBtn.addEventListener('click', function() {
+
+// });

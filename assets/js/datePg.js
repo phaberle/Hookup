@@ -268,5 +268,7 @@ goForItBtn.addEventListener('click', function() {
 emptyLikesBtn.addEventListener('click', function() {
     if (window.confirm("Are you sure you want to ERASE all your likes?")) {
         localStorage.clear();
+        likePhoto.innerHTML = "<img src='assets/img/questionMark.png'>";
+        likeName.innerHTML = "";
     };
 });

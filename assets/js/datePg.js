@@ -16,7 +16,7 @@ const forwardBtn = document.querySelector("#forwardBtn");
 const goForItBtn = document.querySelector("#goForItBtn");
 const emptyLikesBtn = document.querySelector("#likesEmptyBtn")
 
-
+likeStaging = {};
 
 /* Parses user sexual preference (located top half). Counts how many options are unchecked.
 If the unchecked count == 2 then it posts a window alert for input validation*/
@@ -45,6 +45,7 @@ Adjusts the ages to better match the returned pictures and filters out names in 
  Sets DOM elements with concatenated responses. 
 */
 const getRandomUserData = (url) => {
+    console.log(url);
     if (url !== undefined) {
         fetch(url)
             .then(res => res.json())
@@ -57,6 +58,8 @@ const getRandomUserData = (url) => {
                 if (!(isArabicName)) {
                     name_age.innerHTML = "<strong>" + data.results[0].name.first + " " + data.results[0].name.last + ", " + age + "</strong>";
                     email.innerHTML = data.results[0].email;
+                    likeStaging.seed = data.info.seed;
+                    // console.log(LikeProps.seed);
                 }
             })
     }
@@ -72,14 +75,18 @@ let adjustAge = function(age) {
     return adjAge;
 }
 
+//Random Activity API Call
 const getRandomActivity = () => {
-    fetch(`https://www.boredapi.com/api/activity/`)
+    fetch(`https://www.boredapi.com/api/activity/?type=recreational`)
         .then(res => res.json())
         .then(data => {
-            activity.innerHTML = data.activity
+            activity.innerHTML = "<strong> On first date: </strong>&nbsp;" + data.activity + ".";
+            likeStaging.randomKey = data.key;
+            //console.log(LikeProps.randomKey);
         })
 }
 
+//Arabic Filter
 var isThisArabic = function(string) {
     var arabic = /[\u0600-\u06FF]/;
     var evaluate = (arabic.test(string));
@@ -92,30 +99,30 @@ shopBtn.addEventListener("click", function() {
 });
 
 likeBtn.addEventListener("click", function() {
-    console.log("Like button clicked");
+    iLikeThatBtnFunc();
 });
 
 /*===================================================*/
 
 //BOTTOM Event Listeners
 goForItBtn.addEventListener('click', function() {
-    console.log("Go for It Button pressed");
+
 });
 
 backBtn.addEventListener('click', function() {
-    console.log("Back Button pressed.");
+
 });
 
 backBtn.addEventListener('click', function() {
-    console.log("Back Button pressed.");
+
 });
 
 forwardBtn.addEventListener('click', function() {
-    console.log("Forward Button pressed.");
+
 });
 
 emptyLikesBtn.addEventListener('click', function() {
-    console.log("Empty Likes button pressed.");
+
 });
 
 /*===================================================*/
@@ -137,3 +144,33 @@ window.onload = function() {
 }
 
 //BEGIN LIKE HISTORY
+
+
+likeThatObj = {};
+
+var iLikeThatBtnFunc = function() {
+    if (localStorage.getItem("pk") == null) {
+        let num = 1;
+        let birthPK = parseInt(localStorage.setItem("pk", "1"));
+        createLS(1);
+    } else {
+        let getPK = localStorage.getItem("pk");
+        let currPK = parseInt(getPK);
+        currPK++;
+        let getPKv2 = "_" + currPK;
+        localStorage.setItem("pk", JSON.stringify(currPK));
+        createLS(currPK);
+    }
+}
+
+createLS = function(pk) {
+    likeThatObj = { seed: likeStaging.seed, APIKey: likeStaging.randomKey };
+    console.log(likeThatObj);
+    let theName = "_" + pk;
+    localStorage.setItem("\"" + theName + "\"", JSON.stringify(likeThatObj));
+    setCurrPickToLowerHalf(likeThatObj);
+}
+
+setCurrPickToLowerHalf = function(object) {
+
+}

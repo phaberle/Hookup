@@ -1,12 +1,24 @@
-const pic = document.getElementById("pic");
+//TOP Selectors
+const topPic = document.getElementById("topPic");
 const name_age = document.getElementById('name_age')
 const email = document.getElementById('email')
 const gender = document.getElementById('gender')
 const activity = document.getElementById('activity')
-const button = document.getElementById('button1')
-const picEl = document.querySelector("#pic");
+const likeBtn = document.querySelector('#likeBtn')
 
-/* Parses user sexual preference. Counts how many options are unchecked.
+//BOTTOM Selectors
+const shopBtn = document.getElementById('shopBtn')
+const likePhoto = document.querySelector(".likeImage");
+const likeImg = document.querySelector(".likeImage");
+const likeName = document.querySelector(".likeName");
+const backBtn = document.querySelector("#backBtn");
+const forwardBtn = document.querySelector("#forwardBtn");
+const goForItBtn = document.querySelector("#goForItBtn");
+const emptyLikesBtn = document.querySelector("#likesEmptyBtn")
+
+
+
+/* Parses user sexual preference (located top half). Counts how many options are unchecked.
 If the unchecked count == 2 then it posts a window alert for input validation*/
 var M_F_choices = function() {
     var choices = document.getElementsByName('gender');
@@ -38,7 +50,7 @@ const getRandomUserData = (url) => {
             .then(res => res.json())
             .then(data => {
                 let imgLnk = data.results[0].picture.large;
-                pic.innerHTML = "<img src = " + imgLnk + " height='256' width='256'>";
+                topPic.innerHTML = "<img src = " + imgLnk + " height='256' width='256'>";
                 let age = adjustAge(data.results[0].dob.age);
                 let theName = data.results[0].name.first + " " + data.results[0].name.last;
                 isArabicName = isThisArabic(theName);
@@ -74,18 +86,54 @@ var isThisArabic = function(string) {
     return evaluate;
 }
 
-
-button.addEventListener("click", function() {
+//TOP Event Event Listeners
+shopBtn.addEventListener("click", function() {
     M_F_choices();
 });
 
-//when page loads, check if there is not picture if true - plant the question mark
-window.onload = function() {
-    let picNodesTest = picEl.hasChildNodes();
-    if (!(picNodesTest)) {
-        let pic = document.createElement("img");
-        pic.setAttribute("src", "assets/img/questionMark.png");
-        picEl.appendChild(pic);
+likeBtn.addEventListener("click", function() {
+    console.log("Like button clicked");
+});
 
+/*===================================================*/
+
+//BOTTOM Event Listeners
+goForItBtn.addEventListener('click', function() {
+    console.log("Go for It Button pressed");
+});
+
+backBtn.addEventListener('click', function() {
+    console.log("Back Button pressed.");
+});
+
+backBtn.addEventListener('click', function() {
+    console.log("Back Button pressed.");
+});
+
+forwardBtn.addEventListener('click', function() {
+    console.log("Forward Button pressed.");
+});
+
+emptyLikesBtn.addEventListener('click', function() {
+    console.log("Empty Likes button pressed.");
+});
+
+/*===================================================*/
+
+//when page loads, and photo DOMS are empty it  plants the question mark
+window.onload = function() {
+    let topPicNodesTest = topPic.hasChildNodes();
+    let bottomPicNodesTest = likePhoto.hasChildNodes();
+    if (!(topPicNodesTest)) {
+        let myPic = document.createElement("img");
+        myPic.setAttribute("src", "assets/img/questionMark.png");
+        topPic.appendChild(myPic);
+    }
+    if (!(bottomPicNodesTest)) {
+        let herPic = document.createElement("img");
+        herPic.setAttribute("src", "assets/img/questionMark.png");
+        likePhoto.appendChild(herPic);
     }
 }
+
+//BEGIN LIKE HISTORY

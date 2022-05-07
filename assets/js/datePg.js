@@ -193,8 +193,8 @@ var ForwardBackBtnClick = function(event) {
     var lsStorageNm = "HistBtnPKPosition";
     var buttonPressed = event.target.getAttribute("id");
     let btnPresentPosition = localStorage.getItem(lsStorageNm);
-    let fwBtnTest = btnPresentPosition == null || btnPresentPosition == "undefined";
-    let backBtnTest = btnPresentPosition == null || btnPresentPosition == "undefined";
+    let fwBtnTest = btnPresentPosition == null || (btnPresentPosition == "_undefined" || btnPresentPosition == "undefined");
+    let backBtnTest = btnPresentPosition == null || (btnPresentPosition == "undefined" || btnPresentPosition == "undefined");
     let btnNextPosition;
     if (buttonPressed == "forwardBtn") {
         if (fwBtnTest) {
@@ -219,21 +219,24 @@ var ForwardBackBtnClick = function(event) {
         }
     }
     if (buttonPressed == "backBtn") {
-        if (!backBtnTest) {
-            let x = currPKasInt;
-            let y = btnPresentPositiontoInt();
-            if (y > 1 && y <= currPKasInt) {
-                y--;
-                btnNextPosition = y < 10 ? "_0" + y : "_" + y;
-                btnPresentPosition = localStorage.setItem(lsStorageNm, btnNextPosition);
-                setCurrLikeToLowerHalf(btnNextPosition);
-            } else if (y <= 1) {
-                let zz = x < 10 ? "_0" + x : "_" + x;
-                btnNextPosition = localStorage.setItem(lsStorageNm, zz);
-                setCurrLikeToLowerHalf(zz);
-            }
-            console.log(btnNextPosition);
+        let x;
+        let zz;
+        if (backBtnTest) {
+            x = currPKasInt;
+            localStorage.setItem(lsStorageNm, x);
         }
+        let y = btnPresentPositiontoInt();
+        if (y > 1 && y <= currPKasInt) {
+            y--;
+            btnNextPosition = y < 10 ? "_0" + y : "_" + y;
+            btnPresentPosition = localStorage.setItem(lsStorageNm, btnNextPosition);
+            setCurrLikeToLowerHalf(btnNextPosition);
+        } else if (y <= 1) {
+            zz = currPKasInt < 10 ? "_0" + currPKasInt : "_" + currPKasInt;
+            btnNextPosition = localStorage.setItem(lsStorageNm, zz);
+            setCurrLikeToLowerHalf(zz);
+        }
+        console.log(btnNextPosition);
     }
 }
 

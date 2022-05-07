@@ -15,6 +15,9 @@ const likeEmail = document.querySelector(".likeEmail");
 const forwardBtn = document.querySelector("#forwardBtn");
 const goForItBtn = document.querySelector("#goForItBtn");
 const emptyLikesBtn = document.querySelector("#likesEmptyBtn")
+const modal_container = document.getElementById('modal-container')
+const close = document.getElementById('close')
+
 
 likeStaging = {};
 
@@ -37,8 +40,12 @@ var M_F_choices = function() {
         }
     }
     if (noCount == 2) {
-        window.alert("Please choose if you are seeking a man or woman.");
+        modal_container.classList.add('show');
     }
+
+    close.addEventListener('click', () => {
+        modal_container.classList.remove('show');
+    })
 }
 
 /*Handles API call based on user's sexual preference, renders photo from API photo URL.
@@ -102,12 +109,12 @@ window.onload = function() {
     let bottomPicNodesTest = likePhoto.hasChildNodes();
     if (!(topPicNodesTest)) {
         let myPic = document.createElement("img");
-        myPic.setAttribute("src", "assets/img/questionMark.png");
+        myPic.setAttribute("src", "assets/img/testimage-removebg-preview.png");
         topPic.appendChild(myPic);
     }
     if (!(bottomPicNodesTest)) {
         let herPic = document.createElement("img");
-        herPic.setAttribute("src", "assets/img/questionMark.png");
+        herPic.setAttribute("src", "");
         likePhoto.appendChild(herPic);
     }
 }
@@ -263,7 +270,13 @@ backBtn.addEventListener('click', ForwardBackBtnClick);
 forwardBtn.addEventListener('click', ForwardBackBtnClick);
 
 goForItBtn.addEventListener('click', function() {
-    window.alert("Have a wonderful time!!");
+    document.getElementById("tapHeader").innerHTML = "YOU CHOSEN TO TAP THAT!";
+    document.getElementById("tapPara").innerHTML = "ENJOY !";
+    modal_container.classList.add('show');
+});
+
+close.addEventListener('click', () => {
+    modal_container.classList.remove('show');
 });
 
 emptyLikesBtn.addEventListener('click', function() {

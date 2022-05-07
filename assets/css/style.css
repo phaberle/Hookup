@@ -1,6 +1,6 @@
 .container {
     margin: auto;
-    width: 100vh;
+    width: 100vw;
     padding: 10px;
 }
 
@@ -13,6 +13,11 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.topTwoBtn{
+    display: flex;
+    flex-direction: column;
 }
 
 #open{
@@ -28,16 +33,23 @@ h3 {
     justify-content: center;
     align-items: center;
     margin: auto;
+    width: 100vw;
     position: fixed;
-    width: 100%;
-    top: 200px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     font-size: 20px;
     font-weight: bold;
+    opacity: 0;
+}
+
+.modal-container.show {
+    opacity: 1;
 }
 
 .modal {
     width: 600px;
-    background-color: #002bff;
+    background-color: grey;
     padding: 30px 50px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -50,7 +62,7 @@ h3 {
     border-radius: 5px;
 }
 
-.glow-on-hover {
+/* .glow-on-hover {
     width: 220px;
     height: 50px;
     border: none;
@@ -110,14 +122,13 @@ h3 {
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
-}
+} */
 
 
 .LikeParent {
     display: flex;
     width: 50%;
-    height: 70vh;
-
+    height: 80vh;
     margin: 0 auto 0;
     margin-top: 10px;
 }
@@ -140,9 +151,17 @@ h3 {
 .btnControls {
     margin-left: 10px;
     margin-top: 100px;
+    display: flex;
+    flex-direction: column;
 }
 
 .btnControls div {
     padding-left: 25px;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

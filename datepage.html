@@ -119,16 +119,16 @@
         <!-- Modal Section -->
         <div class="modal-container" id="modal-container">
             <div class="modal">
-                <h3>You Have Not Chosen A Selection</h3>
-                <p>
+                <h3 id="tapHeader">You Have Not Chosen A Selection</h3>
+                <p id="tapPara">
                     Please choose if you are seeking a man or woman.
                 </p>
                 <button id="close">
-                    Close Me
+                    OK
                 </button>
             </div>
         </div>
-
+        <!-- Modal Ends -->
 
     <div class="container">
         <h1 class="header text-7xl font-bold">Random Date Picker</h1>
@@ -141,15 +141,16 @@
             <input type="radio" id="female" name="gender" value="female">
             <label for="gender" class="text-2xl font-bold">Women</label>
         </div>
+        
         <!-- TOP PART -->
         <p id="topPic"></p>
         <p id="name_age"></p>
         <p id="email"></p>
         <p id="activity"></p>
-        <div style="width:10%;margin:0 auto; margin-top:2%">
 
+        <div class="topTwoBtn" style="width:10%;margin:0 auto; margin-top:2%">
             <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 pt-25 glow-on-hover" id="shopBtn">Let's Shop</button>
-            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover" id="likeBtn">I Like That</button>
+            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 pt-25 glow-on-hover" id="likeBtn">I Like That</button>
         </div>
     </div>
     <!-- BOTTOM PART -->
@@ -158,10 +159,10 @@
             <span class="likeImage"></span>
             <span class="likeName"></span>
             <span class="likeEmail"></span>
-            <div>
-                <button id="goForItBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Tap That</button>
-            </div>
+                        
             <span class="btnControls">
+                <button id="goForItBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Tap That</button>
+
                 <button id="backBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Back</button>
                 
                 <button id="forwardBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Forward</button>
@@ -171,7 +172,7 @@
         </div>
     </div>
 
-    <footer class="bg-gray-100 text-center sticky w-full">
+    <footer class="bg-gray-100 text-center sticky">
         <div class="px-6 pt-6">
             <form action="">
                 <div class="grid md:grid-cols-3 gird-cols-1 gap-4 flex justify-center items-center">

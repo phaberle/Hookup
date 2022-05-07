@@ -116,19 +116,45 @@
         </div>
     </nav>
 
-        <!-- Modal Section -->
-        <div class="modal-container" id="modal-container">
-            <div class="modal">
-                <h3 id="tapHeader">You Have Not Chosen A Selection</h3>
-                <p id="tapPara">
-                    Please choose if you are seeking a man or woman.
-                </p>
-                <button id="close">
-                    OK
-                </button>
-            </div>
+    <!-- Modal Section -->
+    <div class="modal-container" id="noSelection">
+        <div class="modal">
+            <h3 id="tapHeader">You Have Not Chosen A Selection</h3>
+            <p id="tapPara">
+                Please choose if you are seeking a man or woman.
+            </p>
+            <button class="closeBtn">
+                OK
+            </button>
         </div>
-        <!-- Modal Ends -->
+    </div>
+
+    <div class="modal-container" id="tapThat">
+        <div class="modal">
+            <h3 id="tapHeader">Enjoy</h3>
+            <p id="tapPara">
+                You two love birds have fun!
+            </p>
+            <button class="closeBtn">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-container" id="clearLikes">
+        <div class="modal">
+            <h3 id="tapHeader">Are You Sure</h3>
+            <p id="tapPara">
+                Are you sure you want to clear ALL Likes?
+            </p>
+            <button class="closeBtn"> No</button>
+            <button id="yesBtn">Yes</button>
+        </div>
+    </div>
+
+
+
+    <!-- Modal Ends -->
 
     <div class="container">
         <h1 class="header text-7xl font-bold">Random Date Picker</h1>
@@ -141,7 +167,7 @@
             <input type="radio" id="female" name="gender" value="female">
             <label for="gender" class="text-2xl font-bold">Women</label>
         </div>
-        
+
         <!-- TOP PART -->
         <p id="topPic"></p>
         <p id="name_age"></p>
@@ -158,16 +184,17 @@
         <div class="likeContainer">
             <span class="likeImage"></span>
             <span class="likeName"></span>
-            <span class="likeEmail"></span>
-                        
-            <span class="btnControls">
-                <button id="goForItBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Tap That</button>
+        </div>
+        <div class="btnControls mx-8">
+            <button id="goForItBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Tap
+                        That</button>
 
-                <button id="backBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Back</button>
-                
-                <button id="forwardBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Forward</button>
+            <button id="backBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Back</button>
 
-                <button id="likesEmptyBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Empty Likes</button>
+            <button id="forwardBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Forward</button>
+
+            <button id="likesEmptyBtn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 glow-on-hover">Empty
+                        Likes</button>
             </span>
         </div>
     </div>
@@ -214,7 +241,7 @@
             <a class="text-white" href="https://tailwind-elements.com/">Tailwind Elements</a>
         </div>
     </footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./assets/js/datePg.js"></script>
 </body>
 

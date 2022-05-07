@@ -5,18 +5,18 @@ const email = document.getElementById('email')
 const gender = document.getElementById('gender')
 const activity = document.getElementById('activity')
 const likeBtn = document.querySelector('#likeBtn')
+const shopBtn = document.querySelector('#shopBtn')
 
 //BOTTOM Selectors
-const shopBtn = document.getElementById('shopBtn')
 const likePhoto = document.querySelector(".likeImage");
 const likeName = document.querySelector(".likeName");
 const backBtn = document.querySelector("#backBtn");
 const likeEmail = document.querySelector(".likeEmail");
 const forwardBtn = document.querySelector("#forwardBtn");
 const goForItBtn = document.querySelector("#goForItBtn");
-const emptyLikesBtn = document.querySelector("#likesEmptyBtn")
-const modal_container = document.getElementById('modal-container')
-const close = document.getElementById('close')
+const emptyLikesBtn = document.querySelector("#likesEmptyBtn");
+const modal_container = document.getElementById('modal-container');
+const closeBtnSection = document.getElementById('close');
 
 
 likeStaging = {};
@@ -25,6 +25,7 @@ likeStaging = {};
 /* Parses user sexual preference (located top half). Counts how many options are unchecked.
 If the unchecked count == 2 then it posts a window alert for input validation*/
 var M_F_choices = function() {
+    console.log("shop button pressed");
     var choices = document.getElementsByName('gender');
     let choice;
     let url;
@@ -40,12 +41,8 @@ var M_F_choices = function() {
         }
     }
     if (noCount == 2) {
-        modal_container.classList.add('show');
+        $("#noSelection").show();
     }
-
-    close.addEventListener('click', () => {
-        modal_container.classList.remove('show');
-    })
 }
 
 /*Handles API call based on user's sexual preference, renders photo from API photo URL.
@@ -117,6 +114,10 @@ window.onload = function() {
         herPic.setAttribute("src", "");
         likePhoto.appendChild(herPic);
     }
+    $("#noSelection").hide();
+    $("#tapThat").hide();
+    $("#clearLikes").hide();
+    $(".LikeParent").hide();
 }
 
 //LIKE HISTORY
@@ -130,6 +131,7 @@ Finally updates pk local storage counter from either situation
 Sends pk to LocalStorageRecorder
 */
 var iLikeThatBtnFunc = function() {
+    $(".LikeParent").show();
     if (localStorage.getItem("pk") == null) {
         let num = 1;
         let birthPK = parseInt(localStorage.setItem("pk", "01"));
@@ -253,6 +255,28 @@ var btnPresentPositiontoInt = function() {
     return x;
 }
 
+//MODAL BUTTON EVENT FUNCTIONS
+
+$(".closeBtn").click(function() {
+    console.log("OK button pressed");
+    $("#noSelection").hide();
+    $("#tapThat").hide();
+    $("#clearLikes").hide();
+});
+
+$("#likesEmptyBtn").click(function() {
+    $("#clearLikes").show()
+});
+
+$("#goForItBtn").click(function() {
+    $("#tapThat").show()
+});
+
+$("#yesBtn").click(function() {
+    localStorage.clear();
+    $("#clearLikes").hide();
+    $(".LikeParent").hide();
+});
 
 
 /*========================================*/
@@ -265,24 +289,5 @@ likeBtn.addEventListener("click", iLikeThatBtnFunc);
 
 /*BOTTOM Half Event Listeners */
 
-
 backBtn.addEventListener('click', ForwardBackBtnClick);
 forwardBtn.addEventListener('click', ForwardBackBtnClick);
-
-goForItBtn.addEventListener('click', function() {
-    document.getElementById("tapHeader").innerHTML = "YOU CHOSEN TO TAP THAT!";
-    document.getElementById("tapPara").innerHTML = "ENJOY !";
-    modal_container.classList.add('show');
-});
-
-close.addEventListener('click', () => {
-    modal_container.classList.remove('show');
-});
-
-emptyLikesBtn.addEventListener('click', function() {
-    if (window.confirm("Are you sure you want to ERASE all your likes?")) {
-        localStorage.clear();
-        likePhoto.innerHTML = "<img src='assets/img/questionMark.png'>";
-        likeName.innerHTML = "";
-    };
-});

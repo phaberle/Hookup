@@ -65,7 +65,6 @@ const getRandomUserData = (url) => {
                     email.innerHTML = data.results[0].email;
                     likeStaging.picture = "<img src = " + imgLnk + " height='256' width='256'>";
                     likeStaging.name = name_age.textContent;
-                    likeStaging.email = email.textContent;
                 }
             })
     }

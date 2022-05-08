@@ -1,7 +1,7 @@
 .container {
     margin: auto;
     width: 100vw;
-    padding: 10px;
+    height: 80vh;
 }
 
 .input,
@@ -68,11 +68,14 @@ h3 {
 
 .LikeParent {
     display: flex;
-    align-items: start;
-    width: 50%;
-    height: 80vh;
-    margin: 0 auto 0;
-    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    margin-top: 25px;
+    text-align: center;
 }
 
 
@@ -80,29 +83,21 @@ h3 {
     display: inline;
 } */
 
-.likeContainer {
+.likeImage{
     display: flex;
-    flex-direction: column;
-    margin: 0 auto 0;
-    width: 20%;
-    height: 100%;
-    align-content: center;
-    margin-top: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.likeName{
+    text-align: center;
 }
 
 .btnControls {
     /* margin-top: 100px; */
     display: flex;
-    flex-direction: column;
 }
 
 .btnControls div {
     padding-left: 25px;
-}
-
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
 }

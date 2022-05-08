@@ -162,7 +162,6 @@ setCurrLikeToLowerHalf = function(pk) {
     let myObj = JSON.parse(objectFromLocalStorage);
     likePhoto.innerHTML = myObj.picture;
     likeName.innerHTML = "<strong>" + myObj.name + "<\strong>";
-    likeEmail.textContent = myObj.email;
 }
 
 //Returns unique, sorted array of all the pk keys from localStorage objects containing like results.

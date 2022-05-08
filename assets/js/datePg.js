@@ -196,7 +196,6 @@ const uniqueArrayValues = function(value, index, self) {
 /* FORWARD, BACKWARD BUTTON FUNCTIONS*/
 
 var ForwardBackBtnClick = function(event) {
-    //debugger;
     var currPK = localStorage.getItem("pk");
     let currPKasInt = Math.floor(currPK);
     var lsStorageNm = "HistBtnPKPosition";

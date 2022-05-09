@@ -83,13 +83,13 @@ h3 {
     display: inline;
 } */
 
-.likeImage{
+.likeImage {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.likeName{
+.likeName {
     text-align: center;
 }
 

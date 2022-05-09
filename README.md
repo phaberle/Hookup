@@ -4,7 +4,7 @@
 
 ## TABLE OF CONTENTS 📖
 
-1. [Elevator Pitch👨‍💼💼](#elevator👨‍💼💼)
+1. [Elevator Pitch](#elevator-pitch)
 
 2. [What Does your application do?](#What-does-your-application-do?)
 

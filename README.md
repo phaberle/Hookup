@@ -4,7 +4,7 @@
 
 ## TABLE OF CONTENTS 📖
 
-1. [Elevator Pitch👨‍💼💼](#elevator-pitch👨‍💼💼)
+1. [Elevator Pitch👨‍💼💼](#elevator👨‍💼💼)
 
 2. [What Does your application do?](#What-does-your-application-do?)
 
@@ -20,7 +20,7 @@
 
 # 
 
-## Elevator Pitch 👨‍💼💼
+# Elevator Pitch 👨‍💼💼
 
 
 > ### *"The online dating scene is tough, not to mention coming up with a date idea can be even harder!  Luckily with “HookUp”, you can match with people and break the ice at the same time with the activity it’ll list!"*

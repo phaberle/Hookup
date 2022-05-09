@@ -1,25 +1,6 @@
 <font size="6">💕  Hookup 💕</font>
 
 #
-
-## TABLE OF CONTENTS 📖
-
-1. [Elevator Pitch👨‍💼💼](#Elevator-Pitch👨‍💼💼)
-
-2. [What Does your application do?](#What-does-your-application-do?)
-
-3. [What technologies were used?](#What-technologies-were-used?)
-
-4. [Demo🚀](#Demo🚀)
-
-5. [Challenges💪](#Challenges💪)
-
-6. [Success✨](#Success✨)
-
-7. [Links📇](#Links📇)
-
-# 
-
 ## Elevator Pitch 👨‍💼💼
 
 
@@ -52,11 +33,11 @@
 
 ## Demo🚀
 
-- [Landing Page](./assets/img/Hookup%20screenshot%201.png)
+- ![Landing Page](./assets/img/Hookup%20screenshot%201.png)
     - This is our Website! from here you can input your name & password, then, click *"Date Now"*
-- [Date Page](./assets/img/HookUp%20screenshot%202.jpg)
+- ![Date Page](./assets/img/HookUp%20screenshot%202.jpg)
     - From here you would pick a preference and click *"Let's Shop"* & match with people with "I Like that" button
-- [Likes, Empty, Tap That](./assets/img/HookUp%20screenshot%203.jpg)
+- ![Likes, Empty, Tap That](./assets/img/HookUp%20screenshot%203.jpg)
     - Finally you'll be able to see your previous likes, empty your likes and start fresh, move back and forth, and finally *"Tap that"* to match!
 
 ## Challenges💪
